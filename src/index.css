@@ -1,0 +1,57 @@
+:root {
+  --main-bg-color: #0e1116;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('assets/fonts/Inter-Regular.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('assets/fonts/Inter-Medium.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('assets/fonts/Inter-SemiBold.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('assets/fonts/Inter-Bold.ttf') format('opentype');
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: var(--main-bg-color);
+  color: var(--light-text-color);
+}
+
+div#root {
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  font-family: Inter !important;
+}
