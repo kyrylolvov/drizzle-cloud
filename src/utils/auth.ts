@@ -8,8 +8,6 @@ export function getGitHubUrl(from: string) {
     state: from,
   };
 
-  console.log(options);
-
   const qs = new URLSearchParams(options);
 
   return `${rootURl}?${qs.toString()}`;

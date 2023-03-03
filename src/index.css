@@ -1,5 +1,13 @@
 :root {
   --main-bg-color: #0e1116;
+  --secondary-bg-color: #22262d;
+
+  --light-text-color: #f0f6fc;
+  --secondary-text-color: #666671;
+
+  --cta-button-color: #c5f74f;
+
+  --input-text-color: #cbd1d7;
 }
 
 @font-face {
@@ -32,6 +40,17 @@
 
 html {
   box-sizing: border-box;
+  font-family: Inter;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
 
 *,
@@ -52,6 +71,6 @@ div#root {
   width: 100%;
 }
 
-button {
-  font-family: Inter !important;
+a {
+  text-decoration: none;
 }
