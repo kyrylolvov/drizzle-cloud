@@ -13,7 +13,7 @@ const AuthPage: FC = () => {
   return (
     <div css={css.centeredPageContainer}>
       <Link to={getGitHubUrl(pathname)}>
-        <Button iconBefore={<GithubIcon />} type="button" width="200px" height="48px">
+        <Button iconBefore={<GithubIcon />} secondary type="button" width="200px" height="48px">
           Sign in with Github
         </Button>
       </Link>
