@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactSelect, { ActionMeta, SingleValue } from 'react-select';
+import ReactSelect, { ActionMeta } from 'react-select';
 
 import * as css from './css';
 
@@ -8,7 +8,7 @@ interface ISelectProps {
   placeholder: string;
   value: string;
   options: { value: string; label: string }[];
-  handleChange: ((newValue: SingleValue<string>, actionMeta: ActionMeta<string>) => void) | undefined;
+  handleChange: ((newValue: { value: string; label: string }, actionMeta: ActionMeta<string>) => void) | undefined;
 }
 
 const Select: React.FC<ISelectProps> = ({ label, placeholder, value, options, handleChange }) => (
@@ -21,6 +21,7 @@ const Select: React.FC<ISelectProps> = ({ label, placeholder, value, options, ha
       // @ts-ignore
       options={options}
       placeholder={placeholder}
+      // @ts-ignore
       onChange={handleChange}
     />
   </div>

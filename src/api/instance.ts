@@ -11,7 +11,7 @@ const handleAuthorization = (config: InternalAxiosRequestConfig) => {
   return config;
 };
 
-const handleResponse = (response: AxiosResponse) => response;
+const handleResponse = (response: AxiosResponse) => response.data;
 
 const handleErrors = async (err: AxiosError<{ message: string }>) => {
   // if (err.response?.status === 401) {

@@ -1,8 +1,8 @@
-import { ISignInResponse } from '../types/auth';
+import { IUserTokens } from '../types/auth';
 import { instance } from './instance';
 
-export const postSignIn = async (code: string) =>
-  instance.post<ISignInResponse>('/user/sign-up', {
+export const signIn = async (code: string) =>
+  instance.post<IUserTokens>('/user/sign-up', {
     params: {
       code,
     },

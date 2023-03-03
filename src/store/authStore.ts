@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { postSignIn } from '../api/auth';
+import { signIn } from '../api/auth';
 import { IAuthStore } from '../types/auth';
 
 export const useAuthStore = create<IAuthStore>()(
@@ -9,7 +9,7 @@ export const useAuthStore = create<IAuthStore>()(
       tokens: { access_token: '', refresh_token: '' },
 
       signIn: async (code) => {
-        const { data } = await postSignIn(code);
+        const { data } = await signIn(code);
 
         set({ tokens: { ...data } });
       },

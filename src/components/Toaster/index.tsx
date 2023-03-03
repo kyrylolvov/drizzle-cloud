@@ -6,7 +6,8 @@ export const Notification: FC = () => (
     position="top-right"
     toastOptions={{
       style: {
-        fontFamily: 'Futura PT',
+        fontFamily: 'Inter',
+        fontSize: '14px',
         fontWeight: 500,
         width: '270px',
       },

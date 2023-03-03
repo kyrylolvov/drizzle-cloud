@@ -1,13 +1,10 @@
 export interface IAuthStore {
-  tokens: {
-    access_token: string;
-    refresh_token: string;
-  };
+  tokens: IUserTokens;
 
   signIn: (code: string) => Promise<void>;
 }
 
-export interface ISignInResponse {
+export interface IUserTokens {
   access_token: string;
   refresh_token: string;
 }
