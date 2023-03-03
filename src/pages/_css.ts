@@ -18,3 +18,7 @@ export const header: CSSWithTheme = () => ({
   alignItems: 'center',
   justifyContent: 'space-between',
 });
+
+export const body: CSSWithTheme = () => ({
+  marginTop: '24px',
+});
