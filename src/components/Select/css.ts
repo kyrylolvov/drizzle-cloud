@@ -11,7 +11,7 @@ export const select: CSSWithTheme = () => ({
     fontFamily: 'Inter',
     fontSize: '14px',
     borderRadius: '4px',
-    outline: 'none',
+    outline: 'none !important',
     border: '1px solid var(--secondary-text-color)',
     background: 'var(--main-bg-color)',
     color: 'var(--input-text-color)',
@@ -34,9 +34,14 @@ export const select: CSSWithTheme = () => ({
         color: 'var(--secondary-text-color)',
       },
     },
+
+    ':hover': {
+      border: '1px solid var(--secondary-text-color)',
+    },
   },
 
   '.react-select__control--is-focused': {
+    border: 'none !important',
     boxShadow: '0 0 0 1px var(--cta-button-color)',
   },
 
