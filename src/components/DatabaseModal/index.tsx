@@ -70,10 +70,9 @@ const DatabaseModal: FC<IDashboardModalProps> = ({ isOpen, onClose }) => {
           <Select
             label="Region"
             placeholder="Select a region"
-            // @ts-ignore
             options={regionOptions}
-            // @ts-ignore
-            handleChange={(newValue) => setFieldValue('region', newValue.value)}
+            value={values.region}
+            handleChange={(value) => setFieldValue('region', value)}
           />
         </div>
         <Button type="submit" style={{ marginTop: '32px', textTransform: 'uppercase' }} disabled={!isValid}>
