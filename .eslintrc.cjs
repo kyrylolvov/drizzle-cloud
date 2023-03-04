@@ -17,5 +17,7 @@ module.exports = {
     'react/no-unstable-nested-components': 0,
     'no-return-assign': 0,
     '@typescript-eslint/no-shadow': 0,
+    'import/no-cycle': 0,
+    'react/jsx-no-useless-fragment': 0,
   },
 };

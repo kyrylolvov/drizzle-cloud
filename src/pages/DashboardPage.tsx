@@ -27,7 +27,7 @@ const DashboardPage: FC = () => {
       </div>
       <div css={css.body}>
         {databases.map((database) => (
-          <ListItem name={database.name} region={database.region} />
+          <ListItem name={database.name} region={database.region} key={database.id} />
         ))}
       </div>
 

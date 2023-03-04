@@ -36,7 +36,7 @@ const DatabaseModal: FC<IDashboardModalProps> = ({ isOpen, onClose }) => {
     region: yup.string().required('This field is required'),
   });
 
-  const { values, errors, handleChange, setFieldValue, handleSubmit, resetForm, validateForm, isValid } = useFormik({
+  const { values, handleChange, setFieldValue, handleSubmit, resetForm, validateForm, isValid } = useFormik({
     initialValues,
     validationSchema,
     validateOnChange: true,

@@ -59,7 +59,7 @@ export const select: CSSWithTheme = () => ({
     '.react-select__option': {
       cursor: 'pointer',
 
-      ':not(:first-child)': {
+      ':not(:first-of-type)': {
         marginTop: '6px',
       },
     },

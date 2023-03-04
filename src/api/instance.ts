@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { toast } from 'react-hot-toast';
+import { useAuthStore } from '../store/authStore';
+import { refresh } from './auth';
 
 const handleAuthorization = (config: InternalAxiosRequestConfig) => {
-  // const { accessToken } = useAuthStore.getState().tokens;
+  const { access_token } = useAuthStore.getState().tokens;
 
   const modifiedConfig = config;
 
-  // modifiedConfig.headers.Authorization = `Bearer ${accessToken}`;
+  modifiedConfig.headers.Authorization = `Bearer ${access_token}`;
 
   return config;
 };
@@ -14,22 +17,17 @@ const handleAuthorization = (config: InternalAxiosRequestConfig) => {
 const handleResponse = (response: AxiosResponse) => response.data;
 
 const handleErrors = async (err: AxiosError<{ message: string }>) => {
-  // if (err.response?.status === 401) {
-  //   const originalRequest = err.config!;
-  //   const { refreshToken } = useAuthStore.getState().tokens;
+  if (err.response?.status === 401) {
+    const originalRequest = err.config!;
+    const { refresh_token } = useAuthStore.getState().tokens;
 
-  //   if (err.response.data.message === 'Invalid refresh token' || !refreshToken) {
-  //     useAuthStore.setState({ tokens: { accessToken: '', refreshToken: '' }, isLoading: false });
-  //     return Promise.reject(err);
-  //   }
+    const { data } = await refresh({ refresh_token });
 
-  //   const { data } = await refresh({ refreshToken });
+    originalRequest.headers.Authorization = `Bearer ${data.access_token}`;
+    useAuthStore.setState({ tokens: { ...data } });
 
-  //   originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
-  //   useAuthStore.setState({ tokens: { accessToken: data.accessToken, refreshToken } });
-
-  //   return axios(originalRequest);
-  // }
+    return axios(originalRequest);
+  }
 
   toast.error(err.response?.data?.message ?? 'Oops..! Something went wrong.');
   return Promise.reject(err);
