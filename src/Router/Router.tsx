@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import AuthPage from '../pages/AuthPage';
 import DashboardPage from '../pages/DashboardPage';
 import BaseRoute from './BaseRoute';
@@ -23,6 +23,7 @@ const Router = () => (
         </ProtectedRoute>
       }
     />
+    <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 );
 
