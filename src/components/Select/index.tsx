@@ -17,7 +17,8 @@ const Select: React.FC<ISelectProps> = ({ label, placeholder, value, options, ha
     <ReactSelect
       classNamePrefix="react-select"
       css={css.select}
-      value={value}
+      // @ts-ignore
+      value={value.length ? { label: value } : ''}
       // @ts-ignore
       options={options}
       placeholder={placeholder}

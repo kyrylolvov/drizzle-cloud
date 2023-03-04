@@ -51,6 +51,8 @@ const DatabaseModal: FC<IDashboardModalProps> = ({ isOpen, onClose }) => {
     else validateForm();
   }, [isOpen]);
 
+  console.log(values.region);
+
   return (
     <ReactModal
       isOpen={isOpen}
