@@ -21,4 +21,6 @@ export const header: CSSWithTheme = () => ({
 
 export const body: CSSWithTheme = () => ({
   marginTop: '24px',
+  display: 'grid',
+  gap: '16px',
 });

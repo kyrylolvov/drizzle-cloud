@@ -1,22 +1,36 @@
-import React, { FC } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { FC, useEffect } from 'react';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import Button from '../components/Button';
-import { getGitHubUrl } from '../utils/auth';
 
 import { ReactComponent as GithubIcon } from '../assets/images/icons/github-icon.svg';
 
 import * as css from './_css';
+import { useAuthStore } from '../store/authStore';
+import { getGitHubUrl } from '../utils/auth';
 
 const AuthPage: FC = () => {
   const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
+
+  const code = searchParams.get('code');
+
+  const { signIn } = useAuthStore((state) => state);
+
+  useEffect(() => {
+    if (code) {
+      signIn(code);
+    }
+  }, [searchParams]);
 
   return (
     <div css={css.centeredPageContainer}>
-      <Link to={getGitHubUrl(pathname)}>
-        <Button iconBefore={<GithubIcon />} secondary type="button" width="200px" height="48px">
-          Sign in with Github
-        </Button>
-      </Link>
+      {!code && (
+        <Link to={getGitHubUrl(pathname)}>
+          <Button iconBefore={<GithubIcon />} secondary type="button" width="200px" height="48px">
+            Sign in with Github
+          </Button>
+        </Link>
+      )}
     </div>
   );
 };

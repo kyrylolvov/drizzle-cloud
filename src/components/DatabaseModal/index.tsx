@@ -2,13 +2,18 @@ import React, { FC, useEffect, useMemo } from 'react';
 import ReactModal from 'react-modal';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+
 import Input from '../Input';
+import Button from '../Button';
+import Select from '../Select';
+
+import { regionOptions } from '../../utils/constants';
+import { useDatabaseStore } from '../../store/databaseStore';
+import { ICreateDatabase } from '../../types/database';
+
 import { ReactComponent as CrossIcon } from '../../assets/images/icons/cross-icon.svg';
 
 import * as css from './css';
-import Button from '../Button';
-import Select from '../Select';
-import { regionOptions } from '../../utils/constants';
 
 interface IDashboardModalProps {
   isOpen: boolean;
@@ -16,7 +21,9 @@ interface IDashboardModalProps {
 }
 
 const DatabaseModal: FC<IDashboardModalProps> = ({ isOpen, onClose }) => {
-  const initialValues = useMemo(
+  const { createDatabase } = useDatabaseStore((state) => state);
+
+  const initialValues = useMemo<ICreateDatabase>(
     () => ({
       name: '',
       region: '',
@@ -32,13 +39,19 @@ const DatabaseModal: FC<IDashboardModalProps> = ({ isOpen, onClose }) => {
   const { values, handleChange, setFieldValue, handleSubmit, resetForm, validateForm, isValid } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {},
+    validateOnChange: true,
+    onSubmit: async (values) => {
+      await createDatabase(values);
+      onClose();
+    },
   });
 
   useEffect(() => {
     if (!isOpen) resetForm();
     else validateForm();
   }, [isOpen]);
+
+  console.log(values.region);
 
   return (
     <ReactModal
@@ -70,10 +83,9 @@ const DatabaseModal: FC<IDashboardModalProps> = ({ isOpen, onClose }) => {
           <Select
             label="Region"
             placeholder="Select a region"
-            // @ts-ignore
             options={regionOptions}
-            // @ts-ignore
-            handleChange={(newValue) => setFieldValue('region', newValue.value)}
+            value={values.region}
+            handleChange={(value) => setFieldValue('region', value.value)}
           />
         </div>
         <Button type="submit" style={{ marginTop: '32px', textTransform: 'uppercase' }} disabled={!isValid}>
